@@ -2,9 +2,7 @@
 
 I love Python and C#.
 
-- 🔭 I’m currently working on Grantierra Energy
-- 🌱 I’m currently learning Computer Vision for NVidia Jetson Nano 
-- 👯 I’m looking to collaborate on AI/ML/NN Projects
-- 🤔 I’m looking for help with AI/ML/NN Projects
-- 💬 Ask me about SharePoint, C#, python for Data science and AI/ML/NN 
-- 📫 How to reach me: Linkedin
+- 🌱 I’m currently learning Computer Vision for NVidia Jetson Nano, Jetson nano Orin and Raspberry Pi 4/5
+- 👯 I’m looking to collaborate on AI/ML/NN/LLM/RAG/NLP Projects
+- 💬 Ask me about SharePoint, C#, python for Data science and AI/ML/NN/LLM/RAG/NLP
+- 📫 How to reach me: Linkedin / email
