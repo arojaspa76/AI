@@ -1,0 +1,66 @@
+About the job
+¡En Grupo Oesía estamos creciendo! Nos gustaría contar contigo para nuestra siguiente oferta de empleo:
+
+
+
+Estamos buscando un/a Responsable de Área de Inteligencia Artificial para incorporarse en un importante proyecto con sede en Madrid, España con residencia permanente.
+
+
+
+¿Nos conoces?
+
+
+
+Grupo Oesía es una multinacional española dedicada a la ingeniería tecnológica y digital, que desarrolla e implementa proyectos en todo el mundo. Con más de 3.400 profesionales en 19 sedes corporativas repartidas entre España y Latinoamérica, genera empleo de calidad y ayuda a crecer a las personas en carreras técnicas.
+
+
+
+Desde Grupo Oesía desarrollamos tecnologías y servicios con el compromiso de crear un futuro en el que la tecnología responda a los retos del planeta y sus habitantes, para crear un mundo mejor, más eficiente, seguro, y sostenible.
+
+
+
+A lo largo de 45 años de trayectoria, Grupo Oesía ha estado inmersa en la innovación de productos y servicios que benefician a más de 2.000 millones de personas de todo el mundo en los ámbitos de la sanidad, la defensa y la seguridad, las telecomunicaciones, las finanzas, la logística y el sector agroalimentario.
+
+
+
+¿Qué buscamos?
+
+
+
+Un/a Responsable de Inteligencia Artifical con amplia experiencia en la coordinación, desarrollo y despliegue de productos de IA.
+¿Cuáles serán tus funciones?
+
+Definir, planificar, presupuestar y gestionar proyectos de Inteligencia Artificial, tanto locales como en la nube, incluyendo arquitecturas MLOps.
+Pensamiento transversal a la hora de aplicar la tecnología en diferentes proyectos.
+Investigación, implementación y despliegue de sistemas de inteligencia artificial (incluyendo sistemas de Deep Learning y Reinforcement Learning) en entornos empresariales y/o de tiempo real.
+Experiencia de al menos 3 años en desarrollos Python.
+Experiencia de al menos 1 año en despliegues de proyectos IA en entornos cloud (Azure, Amazon, Google).
+Conocimiento de liberías Tensorflow y/o Pytorch.
+Experiencia en el despliegue de arquitecturas RAG, GraphRAG, y RAG Híbridas
+¿Qué te ofrecemos? 
+
+Trabajar en una multinacional reconocida como una de las mejores empresas para trabajar en 2024, según Actualidad Económica y Forbes.
+Proyectos tecnológicos estables e innovadores para clientes punteros de ámbito nacional e internacional.
+Plan de carrera: ofrecemos una atractiva carrera profesional en función de la experiencia y potencial personal dentro de una compañía en continua evolución y con un sólido crecimiento.
+Acceso gratuito a varias plataformas de formación para que tengas acceso a un amplio catálogo multidisciplinar.
+Retribución flexible.
+Una compañía igualitaria, diversa y con gran Responsabilidad Social Corporativa.
+Un ambiente laboral positivo, saludable y de cooperación. Trabajar en equipo es el pilar de los éxitos de los proyectos de la compañía.
+Formación técnica en el propio puesto de trabajo impartida por el cliente durante el inicio de la incorporación.
+
+
+REQUISITOS MÍNIMOS:
+
+Competencias deseables para el desarrollo del puesto:
+
+Titulación Universitaria en Física, Ingeniería Aeroespacial, Ingeniería en Telecomunicaciones, Ingeniería Informática, Ingeniería Industrial o equivalente.
+Capacidad para estar al día en las últimas tendencias e innovaciones en Inteligencia Artificial (Deep Learning en particular) y su aplicabilidad en proyectos concretos.
+Nivel alto de Inglés (mínimo B2-C1).
+Disponibilidad para viajar a nivel nacional.
+Flexibilidad y capacidad de adaptación a entornos muy cambiantes.
+
+Se valorará positivamente:
+Capacidad de comunicación y liderazgo.
+
+
+¿Quieres trabajar en los mejores equipos del sector y formar parte de grandes proyectos tecnológicos e industriales? ¡Únete a Grupo Oesía a través de esta oferta!

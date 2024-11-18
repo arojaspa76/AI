@@ -1,0 +1,53 @@
+Aramco energizes the world economy.
+
+Aramco occupies a unique position in the global energy industry. We are the world's largest producer of hydrocarbons (oil and gas), with the lowest upstream carbon intensity of any major producer. 
+
+With our significant investment in technology and infrastructure, we strive to maximize the value of the energy we produce for the world along with a commitment to enhance Aramco’s value to society.
+
+Headquartered in the Kingdom of Saudi Arabia, and with offices around the world, we combine market discipline with a generations’ spanning view of the future, born of our nine decades experience as responsible stewards of the Kingdom’s vast hydrocarbon resources. This responsibility has driven us to deliver significant societal and economic benefits to not just the Kingdom, but also to a vast number of communities, economies, and countries that rely on the vital and reliable energy that we supply.
+
+We are one of the most profitable companies in the world, as well as amongst the top five global companies by market capitalization.
+
+Overview
+We are seeking an Artificial Intelligence (AI) and Digitalization Specialist with a background in the oil and gas industry to join the Gas Strategy & Technical Support Department.
+
+
+The Gas Strategy & Technical Support Department is responsible for setting the strategy of gas program, balancing sales gas supply and demand, monitoring gas programs, providing AI/digitalization solutions, support subsurface technical reservoir studies and well design and completion strategies of wells, and managing the engineering work for subsurface strategic gas storage to balance seasonal demand.  
+
+
+The successful candidate will be responsible for developing and implementing AI solutions to optimize exploration and production, in the gas sector. In addition, the candidate needs to possess a deep understanding of data-driven technologies and have a proven track record in implementing automation and digitalization initiatives that drive efficiency, innovation, and value creation.
+
+Key Responsibilities
+As a successful candidate you will be required to perform the following:
+
+Design and deploy machine learning models to analyze geological data, predict equipment failure, and enhance oil recovery methods.
+Conduct data mining and big data analysis to identify trends and insights that can lead to cost reductions and improved safety measures
+Lead the development and execution of data automation strategies to enhance operational efficiency and decision-making processes.
+Design and implement robust data management systems that ensure data integrity, quality, and accessibility across the organization.
+Collaborate with cross-functional teams to identify opportunities for process improvements and digital transformation.
+Develop and oversee the integration of advanced analytics, machine learning models, and AI to optimize production, maintenance, and exploration activities.
+Drive the adoption of digital technologies to enable real-time monitoring and predictive analytics.
+Ensure compliance with industry standards and regulations related to data security and privacy.
+Provide expert guidance and support to technical teams in the deployment of digital solutions.
+Stay up-to-date for emerging trends and technologies in data automation and digitalization within the oil/gas sector.
+Conduct data mining and big data analysis to identify trends and insights that can lead to cost reductions and improved safety measures.
+Communicate findings and recommendations to non-technical stakeholders, translating complex AI concepts into actionable business strategies.
+Minimum Requirements
+As a successful candidate you will hold a:
+
+Bachelor of science in petroleum engineering or related engineering discipline from an accredited university, MSc or PhD is a plus.
+Minimum of 5 years of experience in data automation and digitalization within the oil and gas industry.
+Strong knowledge of data modeling, database design, and data warehousing principles.
+Proficiency in programming languages such as Python, R, or SQL.
+Experience with data visualization tools and platforms (e.g., Tableau, Power BI, spotfire).
+Familiarity with cloud computing services (e.g., AWS, Azure) and big data technologies (e.g., Hadoop, Spark).
+Excellent project management skills and the ability to lead complex digital transformation projects.
+Strong analytical and problem-solving abilities, with a keen attention to detail.
+Exceptional communication and interpersonal skills, with the ability to convey technical concepts to non-technical stakeholders.
+Working environment
+
+Our high-performing employees are drawn by the challenging and rewarding professional, technical and industrial opportunities we offer, and are remunerated accordingly.
+
+At Aramco, our people work on truly world-scale projects, supported by investment in capital and technology that is second to none. And because, as a global energy company, we are faced with addressing some of the world’s biggest technical, logistical and environmental challenges, we invest heavily in talent development.
+
+We have a proud history of educating and training our workforce over many decades. Employees at all levels are encouraged to improve their sector-specific knowledge and competencies through our workforce development programs – one of the largest in the world.

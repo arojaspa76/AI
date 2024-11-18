@@ -1,0 +1,49 @@
+About the job
+Who We Are
+
+Boston Consulting Group partners with leaders in business and society to tackle their most important challenges and capture their greatest opportunities. BCG was the pioneer in business strategy when it was founded in 1963. Today, we help clients with total transformation-inspiring complex change, enabling organizations to grow, building competitive advantage, and driving bottom-line impact.
+
+To succeed, organizations must blend digital and human capabilities. Our diverse, global teams bring deep industry and functional expertise and a range of perspectives to spark change. BCG delivers solutions through leading-edge management consulting along with technology and design, corporate and digital ventures—and business purpose. We work in a uniquely collaborative model across the firm and throughout all levels of the client organization, generating results that allow our clients to thrive.
+
+We Are BCG X
+
+We’re a diverse team of more than 3,000 tech experts united by a drive to make a difference. Working across industries and disciplines, we combine our experience and expertise to tackle the biggest challenges faced by society today. We go beyond what was once thought possible, creating new and innovative solutions to the world’s most complex problems. Leveraging BCG’s global network and partnerships with leading organizations, BCG X provides a stable ecosystem for talent to build game-changing businesses, products, and services from the ground up, all while growing their career. Together, we strive to create solutions that will positively impact the lives of millions.
+
+What You'll Do
+
+Our BCG X teams own the full analytics value-chain end to end: framing new business challenges, designing innovative algorithms, implementing, and deploying scalable solutions, and enabling colleagues and clients to fully embrace AI. Our product offerings span from fully custom-builds to industry specific leading edge AI software solutions.
+
+As a Lead Data Scientist/Principal, you'll be part of our rapidly growing team. You'll have the chance to apply data science methods and analytics to real-world business situations across different sectors to drive significant business impact. We help companies identify and develop growth opportunities that reshape the future.
+
+As a core member of BCG X you will also take a larger and more proactive role in shaping the strategy of BCG X – and of BCG overall. You will work closely with partners & managing directors to drive our company’s growth & business development. Additional responsibilities will include developing and delivering thought leadership, managing teams of data scientists, engineers, designers. Successful candidates are intellectually curious builders who are biased toward action, scrappy, and communicative.
+
+What You'll Bring
+
+ 7+ years of relevant industry work experience providing data science solutions, and/or 3 years consulting experience with a focus on baking/fintech industry. 
+ PhD or other Advanced degree required in a field linked to business analytics, statistics or geo- statistics, operations research, geography, applied mathematics, computer science, engineering, or related field 
+ Strong record of professional accomplishment and leadership 
+ Looking for individuals with deep technical and data science expertise, acute strategic and analytical skills, ability to lead and persuade, drive and energy, and desire to work in a project-based environment on strategic 
+ Demonstrated ability to lead and manage projects and teams. 
+ Fluency in at least one coding language (Python)
+
+Additional info
+
+Who You Are
+
+We are seeking a strong candidate with significant experience in advanced analytics to fill an exciting Lead Data Scientist/Principal position within BCG X. The Lead Data Scientist/Principal is expected to be recognized expert in data science and will manage a team of data scientists and engineers to build innovative new products and analytics solutions in BCG X. Successful candidates possess the following:
+
+ Comfortable in a client-facing role, manage engagements, client relationships, provide “thought leadership” to teams
+ Explain sophisticated data science concepts in an understandable manner and act as interface between business & tech
+ Likes to distill complex results or processes into simple, clear visualizations
+ Significant experience applying advanced analytics to a variety of business situations and a proven ability to synthesize complex data
+ Solid understanding of modern machine learning techniques and their mathematical underpinnings, and can translate this into business implications for our clients 
+ Have strong project management skills
+
+WORK ENVIRONMENT
+
+ Fast-paced, intellectually intense, service-oriented environment 
+ Fluency in English is required as well as fluency in the local language for some locations 
+ Ability to travel based on client and business needs. Expect 30-50% 
+ Position is located in Bogota, Colombia.
+
+Boston Consulting Group is an Equal Opportunity Employer. All qualified applicants will receive consideration for employment without regard to race, color, age, religion, sex, sexual orientation, gender identity / expression, national origin, disability, protected veteran status, or any other characteristic protected under national, provincial, or local law, where applicable, and those with criminal histories will be considered in a manner consistent with applicable state and local laws.
