@@ -5,14 +5,20 @@ import matplotlib.pyplot as plt
 from matplotlib.widgets import Button
 from wordcloud import WordCloud
 import re, os
+import nltk
+from nltk.corpus import stopwords
+from jobDescriptionExceptions import ErrorGettingStopWords
 
 
-# Configuración de MAX_LENGTH
+
+# MAX_LENGTH Configuration
+
 MAX_LENGTH = 100
 PLOT_INDEX = 30
 FILE_NAME_WITHOUT_EXT = ""
 DIRECTORY_NAME = ""
 
+'''
 STOPWORDS = set([
     "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "as", "at", "be", "because",
     "been", "before", "being", "below", "between", "both", "but", "by", "could", "did", "do", "does", "doing", "down", "during",
@@ -26,33 +32,73 @@ STOPWORDS = set([
     "would", "you", "you'd", "you'll", "you're", "you've", "your", "yours", "yourself", "yourselves", "[UNK]"
 ])
 
+STOPWORDS_ES = [
+    "a", "al", "algo", "alguien", "algunos", "ante", "antes", "como", "con", "contra", "cual", "cuales", "cualquier", 
+    "cuando", "cuanto", "cuantos", "de", "dejar", "del", "demasiado", "desde", "donde", "dos", "el", "ella", "ellas", 
+    "ellos", "empleado", "en", "entre", "era", "es", "esa", "esas", "ese", "esos", "estaba", "estaban", "estamos", 
+    "estar", "este", "esto", "estos", "estoy", "para", "para", "pero", "por", "porque", "quien", "quienes", "que", 
+    "quien", "que", "que", "sin", "sobre", "tal", "también", "tanto", "te", "toda", "todas", "todo", "todos", "tu", 
+    "tus", "un", "una", "unas", "uno", "unos", "usted", "vosotros", "vuestra", "y", "ya", "de", "y", "sólo", "tanta", 
+    "tantos", "se", "me", "mi", "mí", "nosotros", "nosotras", "nos", "vos", "vosotros", "ya", "mucha", "mucho", "muchos", 
+    "muchas", "cuando", "como", "a", "aquel", "aquella", "aquella", "alguien", "ahora", "algo", "[UNK]"
+]
+'''
+
+
 class jobDescriptionOperations:
     """
     Instantiates the jobDescriptionOperations class
     
     Args:
-        None.
+        language: Language used to get the stopwords.
     
     Returns:
         Procedures
     """   
+    # Class initializacion
+    def __init__(self, language='en'):
+        self.language = language
+        self.stopwords = None
+
+        print("Language: ", self.language)
+
+        self.get_stopwords()
+
     
-    # Preprocesar el texto (convertir a minúsculas, quitar puntuación, eliminar stopwords)
+    # Setup the language to get the stop words used
+    def get_stopwords(self):
+
+        try:
+            nltk.download('stopwords')
+
+            if(self.language.lower() =='en'):
+                self.stopwords = stopwords.words('english')
+            elif(self.language.lower() =='es'):
+                self.stopwords = stopwords.words('spanish')
+            else:
+                raise ErrorGettingStopWords("There aren't language defined. By default, the system will use english as default language")
+        
+        except ErrorGettingStopWords as e:
+            print(f"An error has occurred: {e}")
+            self.stopwords = stopwords.words('english')
+
+    
+    # Preprocess the text (convert to lowercase, remove punctuation, remove stopwords)
     def preprocess_text(self, text):
-        # Convertir a minúsculas
+        # Convert to lowercase
         text = tf.strings.lower(text)
         
-        # Eliminar puntuación
+        # Delete punctuation
         text = tf.strings.regex_replace(text, r'[^\w\s]', '')
         
-        # Dividir el texto en palabras
+        # Split text into words
         words = tf.strings.split(text)
         
-        # Usar tf.strings para realizar el filtrado de stopwords
+        # Using tf.strings to perform stopword filtering
         filtered_words = tf.strings.reduce_join(
             tf.strings.regex_replace(
                 words, 
-                '|'.join([r'\b' + word + r'\b' for word in STOPWORDS]),  # Eliminar stopwords
+                '|'.join([r'\b' + word + r'\b' for word in self.stopwords]),  # Delete stopwords
                 ''
             ),
             separator=' '
@@ -60,7 +106,7 @@ class jobDescriptionOperations:
         
         return filtered_words
 
-    # Crear el vectorizador de texto
+    # Create the text vectorizer.
     def create_vectorizer(self, train_sentences):
         vectorizer = tf.keras.layers.TextVectorization(
             standardize=None, 
@@ -70,86 +116,84 @@ class jobDescriptionOperations:
         vectorizer.adapt(train_sentences)
         return vectorizer
 
-    # Función para contar la frecuencia de las palabras
+    # Function to count the frequency of words.
     def count_word_frequencies(self, dataset, vectorizer):
         word_counts = {}
 
         for text in dataset:
-            # Convertir el texto tokenizado en palabras
+            # Convert tokenized text into words.
             words = self.get_words_from_indices(text.numpy(), vectorizer)
 
-            # Eliminar la palabra [UNK]
+            # Delete the word [UNK].
             words = [word for word in words if word not in ['[UNK]', '[OOV]']]
 
-            # Contar la frecuencia de cada palabra
+            # Count the frequency of each word.
             for word in words:
                 word_counts[word] = word_counts.get(word, 0) + 1
 
-        # Crear una tabla con las palabras y sus frecuencias
+        # Create a table with the words and their frequencies.
         word_table = pd.DataFrame(list(word_counts.items()), columns=['Word', 'Frequency'])
         word_table = word_table.sort_values(by='Frequency', ascending=False)
 
         return word_table
 
-    # Función para revertir índices a palabras
+    # Function to revert indexes to words.
     def get_words_from_indices(self, indices, vectorizer):
-        # Obtener el vocabulario del vectorizador
+        # Get the vectorizer vocabulary.
         vocabulary = vectorizer.get_vocabulary(include_special_tokens=True)
         
-        # Convertir los índices a palabras
-        #words = [vocabulary[index] for index in indices if index < len(vocabulary)]
-
+        # Convert indexes to words.
         words = [vocabulary[index] for index in indices if index < len(vocabulary) and index > 0]
         
         return words
 
-    # Función para crear el gráfico de barras
+    # Function to create the bar graph.
     def plot_word_frequency(self, word_table, index=PLOT_INDEX):
-        # Crear el gráfico de barras para las palabras más frecuentes
+        # Create the bar graph for the most frequent words.
         plt.figure(figsize=(10, 6))
         plt.bar(word_table['Word'][:index], word_table['Frequency'][:index], color='skyblue')
         plt.xticks(rotation=90)
-        plt.xlabel('Palabras')
-        plt.ylabel('Frecuencia')
-        plt.title('Palabras más frecuentes')
+        plt.xlabel('Words')
+        plt.ylabel('Frecuency')
+        plt.title('Most frequently used words')
         plt.show()
 
-    # Función para generar la nube de palabras
+    # Function to generate the word cloud.
     def generate_wordcloud(self, word_table):
         word_freq_dict = dict(zip(word_table['Word'], word_table['Frequency']))
 
-        # Crear la nube de palabras
+        # Create the word cloud.
         wordcloud = WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_freq_dict)
 
-        # Mostrar la nube de palabras
+        # Show the word cloud graph.
         plt.figure(figsize=(10, 6))
         plt.imshow(wordcloud, interpolation='bilinear')
         plt.axis('off')
-        plt.title('Nube de palabras')
+        plt.title('WordCloud')
         plt.show()
 
-    # Función para generar la nube de palabras
+    # Function to generate the word cloud without the graphic.
     def generate_wordcloud_only(self, word_table):
         word_freq_dict = dict(zip(word_table['Word'], word_table['Frequency']))
 
-        # Crear la nube de palabras
+        # Create the word cloud.
         return WordCloud(width=800, height=400, background_color='white').generate_from_frequencies(word_freq_dict)
 
 
-    # Preprocesar el dataset y crear la tabla de palabras más frecuentes
+    # Preprocess the dataset and create the table of the most frequent words.
     def preprocess_and_create_word_table(self, dataset, vectorizer):
-        # Aplicar el preprocesamiento
-        dataset = dataset.map(lambda x: self.preprocess_text(x))  # Solo texto, sin etiquetas
+        # Apply preprocessing.
+        dataset = dataset.map(lambda x: self.preprocess_text(x))  # Only text, without labels
         
-        # Tokenizar el texto
+        # Tokenize the text
         tokenized_dataset = dataset.map(lambda x: vectorizer(x))
 
-        # Contar las frecuencias de las palabras
+        # To count word frequencies.
         word_table = self.count_word_frequencies(tokenized_dataset, vectorizer)
 
         return word_table
 
-    # Cargar el archivo de texto (ajusta el path a tu archivo .txt)
+    # Upload the text file (set the path to your .txt file).
     def load_text_file(self, file_path):
         dataset = tf.data.TextLineDataset(file_path)
         return dataset
@@ -159,9 +203,8 @@ class jobDescriptionOperations:
         tituloventana_local = os.path.basename(tituloventana)[:-4]
         fileNameWithoutExt = re.findall(r'[A-Z][^A-Z]*',tituloventana_local)
         fileNameWithoutExt = ' '.join(fileNameWithoutExt)
-        #print(f"Titulo ventana: {fileNameWithoutExt}")
 
-        # Set global FILE_NAME_WITHOUT_EXT
+        # Set global variable FILE_NAME_WITHOUT_EXT and DIRECTORY_NAME
         global FILE_NAME_WITHOUT_EXT
         FILE_NAME_WITHOUT_EXT = tituloventana_local
 
@@ -170,104 +213,94 @@ class jobDescriptionOperations:
 
         return fileNameWithoutExt
     
-    def save_table_to_csv_png_close_window(self, event, tabla):
-        # Guardar los datos de la tabla como archivo CSV
-        tabla.to_csv(f"{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.csv", index=False)
-        print(f"Datos guardados en '{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.csv'")
+    def save_table_to_csv_png_close_window(self, event, table):
+        # To save the table data as a CSV file.
+        table.to_csv(f"{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.csv", index=False)
+        print(f"Data stored in '{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.csv'")
 
-       # Capturar la imagen de la gráfica y guardarla en disco
-        plt.savefig(f"{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.png")  # Guarda la imagen de la gráfica como 'grafica.png'
-        print(f"Gráfica guardada como '{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.png'")
+       # Capture the graph image and save it to disk.
+        plt.savefig(f"{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.png")  # To save the chart image as a png file.
+        print(f"Chart saved as '{DIRECTORY_NAME}/{FILE_NAME_WITHOUT_EXT}.png'")
 
-        # Cerrar la ventana de la figura
+        # Close the figure window.
         plt.close()        
 
     
     def plot_all_in_one(self, dataset, vectorizer, index=PLOT_INDEX, tituloventana=''):
-        # Crear una figura y una cuadrícula de subgráficos usando gridspec
+        # Create a figure and a grid of subplots using gridspec
         fig = plt.figure(figsize=(12, 8))
 
-        # Ajusta el valor de PLOT_INDEX y FILE_NAME
+        # Adjust the value of PLOT_INDEX and FILE_NAME
         global PLOT_INDEX
         PLOT_INDEX = index
 
-        # Set titulo de la grafica
-        #fig.suptitle(self.splitFileNameWithoutExt(tituloventana))
-       
-        # Usar gridspec para controlar el layout
+        # Use gridspec to control the layout
         gs = fig.add_gridspec(2, 2, width_ratios=[1, 2], height_ratios=[5, 1]) 
 
-        # Añadir el gráfico de la tabla (a la izquierda, ocupando toda la altura)
+        # Add the table chart (on the left, occupying the full height)
 
-        # Crear la tabla de palabras más frecuentes
+        # Create the table of most frequent words
         word_table = self.preprocess_and_create_word_table(dataset, vectorizer)
         word_table.reset_index(drop=True, inplace=True)
 
-        #tabla = self.count_word_frequencies(dataset, vectorizer)
-        tabla = word_table.head(index)
-        ax1 = fig.add_subplot(gs[0, 0])  # Ocupa toda la columna izquierda
-        ax1.axis('off')  # Sin ejes en la tabla
-        table = ax1.table(cellText=tabla.values, colLabels=tabla.columns, loc='center', cellLoc='center')
+        wordtable = word_table.head(index)
+        ax1 = fig.add_subplot(gs[0, 0])  # Takes up the entire left column
+        ax1.axis('off')  # No axes for the table
+        table = ax1.table(cellText=wordtable.values, colLabels=wordtable.columns, loc='center', cellLoc='center')
 
-        # Crear un botón de descarga
-        # Crear el botón debajo de la tabla
-        ax_button = fig.add_subplot(gs[1, 0])  # Fila 1, Columna 0
-        ax_button.axis('off')  # Desactivar los ejes para el botón
+        # Create a download button
+        # Create the button below the table
+        ax_button = fig.add_subplot(gs[1, 0])  # Row 1, Column 0
+        ax_button.axis('off')  # Turn off the axes for the button
 
-        # Formato de la tabla:
-        # Cambiar el fondo del encabezado a gris y el texto a blanco
+        # Table formatting:
+        # Change header background to gray and text to white
         for (i, j), cell in table.get_celld().items():
-            if i == 0:  # Encabezado de la tabla
-                cell.set_text_props(weight='bold', color='white')  # Texto en blanco y negrita
-                cell.set_facecolor('gray')  # Fondo gris
+            if i == 0:  # Table header
+                cell.set_text_props(weight='bold', color='white')  # White and bold text
+                cell.set_facecolor('gray')  # Gray background
             else:
-                cell.set_text_props(weight='normal', color='black')  # Texto normal en negro
-                cell.set_facecolor('white')  # Fondo blanco para los datos
+                cell.set_text_props(weight='normal', color='black')  # Normal black text
+                cell.set_facecolor('white')  # White background for data
 
 
-        ax1.set_title('Tabla de Categorías y Valores', fontsize=14, loc='center', pad=20)
+        ax1.set_title('Table with the most used words and their frequency of appearance.', fontsize=14, loc='center', pad=20)
 
-        # Añadir el gráfico de Wordcloud (en la parte superior derecha)
-        ax2 = fig.add_subplot(gs[0, 1])  # Fila 0, columna 1
+        # Add the Wordcloud chart (at the top-right)
+        ax2 = fig.add_subplot(gs[0, 1])  # Row 0, Column 1
         ax2.imshow(self.generate_wordcloud_only(word_table), interpolation='bilinear')
-        ax2.axis('off')  # Sin ejes en la nube de palabras
-        ax2.set_title('Wordcloud de Frecuencia de Palabras', fontsize=14, loc='center', pad=20)
+        ax2.axis('off')   # No axes for the wordcloud
+        ax2.set_title('Wordcloud of Word Frequency', fontsize=14, loc='center', pad=20)
 
-        # Crear el gráfico de barras para las palabras más frecuentes
+        # Create the bar chart for the most frequent words
         categorias = word_table['Word'][:index]
         ax3 = fig.add_subplot(gs[1,1])
         ax3.bar(categorias, word_table['Frequency'][:index], color='skyblue', edgecolor='black')
         ax3.set_xticklabels(categorias, rotation=45)
         ax3.set_xticks(categorias)
-        ax3.set_title('Palabras más frecuentes', fontsize=14, loc='center', pad=20)
-        ax3.set_xlabel('Palabras')
-        ax3.set_ylabel('Frecuencia')
+        ax3.set_title('Most Frequent Words', fontsize=14, loc='center', pad=20)
+        ax3.set_xlabel('Words')
+        ax3.set_ylabel('Frecuency')
 
-        # Crear el botón debajo de la tabla
-        ax_button = fig.add_subplot(gs[1, 0])  # Fila 1, Columna 0
-        ax_button.axis('off')  # Desactivar los ejes para el botón
-        button = Button(ax_button, 'Descargar CSV')
+        # Create the button below the table
+        ax_button = fig.add_subplot(gs[1, 0])  # Row 1, Column 0
+        ax_button.axis('off')  # Turn off the axes for the button
+        button = Button(ax_button, 'Download CSV')
         
-        # Personalizar el botón: Cambiar el color de fondo y texto
-        button.ax.set_facecolor('lightblue')  # Color de fondo
-        button.label.set_color('red')  # Color del texto
-        button.label.set_fontsize(14)  # Tamaño de la fuente
-        button.label.set_fontweight('bold')  # Fuente en negrita
+        # Customize the button: Change the background and text color
+        button.ax.set_facecolor('lightblue')  # Background color
+        button.label.set_color('red')  # Text color
+        button.label.set_fontsize(14)  # Font size
+        button.label.set_fontweight('bold')  # Bold font
 
-        # Lanzar el evento on click
-        button.on_clicked(lambda event: self.save_table_to_csv_png_close_window(event, tabla))
+        # Trigger the on-click event
+        button.on_clicked(lambda event: self.save_table_to_csv_png_close_window(event, wordtable))
 
-        # Ajustar el titulo de la ventana
+        # Adjust the window title
         fig_manager = plt.get_current_fig_manager()
         fig_manager.set_window_title(self.splitFileNameWithoutExt(tituloventana))
 
-        # Ajustar el layout para evitar solapamientos
+        # Adjust the layout to prevent overlaps
         plt.tight_layout()
-        # Mostrar la gráfica
-        plt.show()         
-    
-
-class ErrorLeyendoArchivo(Exception):
-    def __init__(self, mensaje):
-        self.mensaje = mensaje
-        super().__init__(self.mensaje)
+         # Show the chart
+        plt.show()
