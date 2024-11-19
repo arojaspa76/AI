@@ -245,6 +245,7 @@ class jobDescriptionOperations:
 
         wordtable = word_table.head(index)
         ax1 = fig.add_subplot(gs[0, 0])  # Takes up the entire left column
+        ax1.set_title('Words and Frecuency Table.', fontsize=14, loc='center', pad=20)        
         ax1.axis('off')  # No axes for the table
         table = ax1.table(cellText=wordtable.values, colLabels=wordtable.columns, loc='center', cellLoc='center')
 
@@ -263,8 +264,6 @@ class jobDescriptionOperations:
                 cell.set_text_props(weight='normal', color='black')  # Normal black text
                 cell.set_facecolor('white')  # White background for data
 
-
-        ax1.set_title('Table with the most used words and their frequency of appearance.', fontsize=14, loc='center', pad=20)
 
         # Add the Wordcloud chart (at the top-right)
         ax2 = fig.add_subplot(gs[0, 1])  # Row 0, Column 1
