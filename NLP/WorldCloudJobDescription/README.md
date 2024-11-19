@@ -11,11 +11,11 @@ This project uses **Python**, **TensorFlow**, **WordCloud**, and several librari
 ## Developed by:
 
 **Andres Felipe Rojas Parra**  
-CIO & CAIO - Triskel Software Solutions Group  
+CIO & CAIO  
+Triskel Software Solutions Group  
 andres.rojas@triskelss.com  
 +57 (300) 5906373  
 +1 (512) 5396688
-
 
 ---
 
