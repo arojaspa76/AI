@@ -1,0 +1,6 @@
+TensorFlow
+NLTK
+WordCloud
+Pandas
+Matplotlib
+Seaborn
